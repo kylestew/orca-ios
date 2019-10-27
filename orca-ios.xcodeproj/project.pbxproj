@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FF86BCDA2365311E00B634C8 /* desktop in Resources */ = {isa = PBXBuildFile; fileRef = FF86BCD92365311E00B634C8 /* desktop */; };
+		FF86BCDC236533F200B634C8 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = FF86BCDB236533F200B634C8 /* index.html */; };
+		FF86BCDF236534A200B634C8 /* ios in Resources */ = {isa = PBXBuildFile; fileRef = FF86BCDE236534A200B634C8 /* ios */; };
 		FFE0B3F62365303100F2F5A5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE0B3F52365303100F2F5A5 /* AppDelegate.swift */; };
 		FFE0B3F82365303100F2F5A5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE0B3F72365303100F2F5A5 /* SceneDelegate.swift */; };
 		FFE0B3FA2365303100F2F5A5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE0B3F92365303100F2F5A5 /* ViewController.swift */; };
@@ -16,6 +19,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FF86BCD92365311E00B634C8 /* desktop */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = desktop; path = Orca/desktop; sourceTree = SOURCE_ROOT; };
+		FF86BCDB236533F200B634C8 /* index.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
+		FF86BCDE236534A200B634C8 /* ios */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ios; sourceTree = "<group>"; };
 		FFE0B3F22365303100F2F5A5 /* orca-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "orca-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFE0B3F52365303100F2F5A5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FFE0B3F72365303100F2F5A5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -56,9 +62,12 @@
 		FFE0B3F42365303100F2F5A5 /* orca-ios */ = {
 			isa = PBXGroup;
 			children = (
+				FF86BCDE236534A200B634C8 /* ios */,
+				FF86BCD92365311E00B634C8 /* desktop */,
+				FF86BCDB236533F200B634C8 /* index.html */,
+				FFE0B3F92365303100F2F5A5 /* ViewController.swift */,
 				FFE0B3F52365303100F2F5A5 /* AppDelegate.swift */,
 				FFE0B3F72365303100F2F5A5 /* SceneDelegate.swift */,
-				FFE0B3F92365303100F2F5A5 /* ViewController.swift */,
 				FFE0B3FB2365303100F2F5A5 /* Main.storyboard */,
 				FFE0B3FE2365303200F2F5A5 /* Assets.xcassets */,
 				FFE0B4002365303200F2F5A5 /* LaunchScreen.storyboard */,
@@ -125,7 +134,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FF86BCDF236534A200B634C8 /* ios in Resources */,
+				FF86BCDC236533F200B634C8 /* index.html in Resources */,
 				FFE0B4022365303200F2F5A5 /* LaunchScreen.storyboard in Resources */,
+				FF86BCDA2365311E00B634C8 /* desktop in Resources */,
 				FFE0B3FF2365303200F2F5A5 /* Assets.xcassets in Resources */,
 				FFE0B3FD2365303100F2F5A5 /* Main.storyboard in Resources */,
 			);

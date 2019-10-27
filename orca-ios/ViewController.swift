@@ -1,20 +1,26 @@
-//
-//  ViewController.swift
-//  orca-ios
-//
-//  Created by Kyle Stewart on 10/26/19.
-//  Copyright © 2019 Kyle Stewart. All rights reserved.
-//
-
 import UIKit
+import WebKit
 
 class ViewController: UIViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
+    @IBOutlet weak var webView: WKWebView!
+
+    override var prefersStatusBarHidden: Bool {
+        get { return true }
     }
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
 
+        let url = Bundle.main.url(forResource: "index", withExtension: "html", subdirectory: "")!
+        let request = URLRequest(url: url)
+
+        // bypass CORS
+        webView.configuration.preferences.setValue(true, forKey: "allowFileAccessFromFileURLs")
+
+        webView.loadFileURL(url, allowingReadAccessTo: url.deletingLastPathComponent())
+        webView.load(request)
+        webView.becomeFirstResponder()
+    }
 }
 
