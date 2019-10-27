@@ -17,30 +17,41 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jaX-2J-ikH">
-                                <rect key="frame" x="0.0" y="0.0" width="834" height="1174"/>
+                                <rect key="frame" x="0.0" y="40" width="834" height="1134"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <wkWebViewConfiguration key="configuration">
                                     <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
                                     <wkPreferences key="preferences"/>
                                 </wkWebViewConfiguration>
                             </wkWebView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wvN-kZ-vWG">
+                                <rect key="frame" x="0.0" y="0.0" width="834" height="40"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="vJ1-b8-lIs"/>
+                                </constraints>
+                            </view>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="jaX-2J-ikH" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="5BP-pS-VaY"/>
+                            <constraint firstItem="wvN-kZ-vWG" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="8LW-iR-Hrb"/>
                             <constraint firstItem="jaX-2J-ikH" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="DzZ-KU-BWa"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="jaX-2J-ikH" secondAttribute="bottom" id="Kxx-Ds-i0x"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="wvN-kZ-vWG" secondAttribute="trailing" id="WfJ-Jl-NuH"/>
+                            <constraint firstItem="wvN-kZ-vWG" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="cK4-4c-2zM"/>
+                            <constraint firstItem="jaX-2J-ikH" firstAttribute="top" secondItem="wvN-kZ-vWG" secondAttribute="bottom" id="gxu-PD-2gf"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="jaX-2J-ikH" secondAttribute="trailing" id="kwg-Ow-8uw"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="menuViewContainer" destination="wvN-kZ-vWG" id="YiY-bF-aL5"/>
                         <outlet property="webView" destination="jaX-2J-ikH" id="C08-KG-6bx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="133" y="139"/>
+            <point key="canvasLocation" x="132.37410071942446" y="138.69346733668343"/>
         </scene>
     </scenes>
 </document>
