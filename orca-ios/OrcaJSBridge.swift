@@ -8,6 +8,7 @@ class OrcaJSBridge : NSObject, WKScriptMessageHandler {
 
     var delegate: OrcaJSBridgeDelegate?
     weak var webView: WKWebView?
+    let webViewDelegate = WebViewDelegate()
 
     override init() {
         super.init()
@@ -23,7 +24,11 @@ class OrcaJSBridge : NSObject, WKScriptMessageHandler {
         // register callbacks
         let controller = webView.configuration.userContentController
         controller.add(self, name: "menuDidUpdate")
+
+        injectMIDIPolyfill(controller)
     }
+
+    // MARK: - JS Message Reciever
 
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         switch message.name {
@@ -31,8 +36,30 @@ class OrcaJSBridge : NSObject, WKScriptMessageHandler {
             if let jsonString = message.body as? String {
                 parseMenu(jsonString)
             }
+            return
         default: break
         }
+
+        // pass on to MIDI handler
+        webViewDelegate.userContentController(userContentController, didReceive: message)
+    }
+
+    // MARK: - MIDI
+
+    private func injectMIDIPolyfill(_ controller: WKUserContentController) {
+        // inject polyfill script
+        let url = Bundle.main.url(forResource: "WebMIDIAPIPolyfill", withExtension: ".js", subdirectory: "ios")!
+        let scriptString = try! String.init(contentsOf: url)
+        let script = WKUserScript.init(source: scriptString, injectionTime: .atDocumentStart, forMainFrameOnly: true)
+        controller.addUserScript(script)
+
+        // register callbacks
+        controller.add(self, name: "onready")
+        controller.add(self, name: "send")
+        controller.add(self, name: "clear")
+
+        // TEMP: encapsulate this
+        webViewDelegate.midiDriver = MIDIDriver()
     }
 
     // MARK: - Menu
@@ -55,7 +82,7 @@ class OrcaJSBridge : NSObject, WKScriptMessageHandler {
 
     func runMenuCommand(menu: String, item: String) {
         webView?.evaluateJavaScript("require('electron').remote.app.invokeMenuItem(\"\(menu)\", \"\(item)\")") { (result, error) in
-            print(error)
+            assert(error == nil, error!.localizedDescription)
         }
     }
 }

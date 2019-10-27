@@ -33,6 +33,12 @@ class ViewController: UIViewController, OrcaJSBridgeDelegate {
         webView.becomeFirstResponder()
     }
 
+    // MARK: - ORCA JS Bridge
+
+    func jsBridgeMenuDidUpdate(info: [[String: Any]]?) {
+        menuViewController.bind(info)
+    }
+
     // MARK: - Menu
 
     @IBOutlet weak var menuViewContainer: UIView!
@@ -45,11 +51,5 @@ class ViewController: UIViewController, OrcaJSBridgeDelegate {
         menuViewController.didMove(toParent: self)
 
         menuViewController.jsBridge = jsBridge
-    }
-
-    // MARK: - ORCA JS Bridge
-
-    func jsBridgeMenuDidUpdate(info: [[String: Any]]?) {
-        menuViewController.bind(info)
     }
 }
