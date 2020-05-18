@@ -4,6 +4,7 @@
     <link rel="stylesheet" type="text/css" href="desktop/sources/links/main.css"/>
 
     <script type="module" src="ios/mock/require.js"></script>
+    <script type="text/javascript">function require(name){ console.warn('Failed to require '+name) }</script>
 
     <script type="text/javascript" src="desktop/sources/scripts/lib/acels.js"></script>
     <script type="text/javascript" src="desktop/sources/scripts/lib/theme.js"></script>
@@ -26,8 +27,8 @@
     <title>Orca</title>
   </head>
   <body>
-    <script type="module">
-      console.clear()
+    <script>
+      'use strict'
 
       const client = new Client()
 
@@ -35,8 +36,9 @@
 
       window.addEventListener('load', () => {
         client.start()
-        client.acels.inject('Orca')
+        window.orcaClient = client;
       })
+
     </script>
   </body>
 </html>
