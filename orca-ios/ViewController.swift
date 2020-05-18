@@ -5,6 +5,7 @@ class ViewController: UIViewController, OrcaJSBridgeDelegate {
 
     @IBOutlet weak var webView: WKWebView!
     let jsBridge = OrcaJSBridge()
+    let accelerators = AcceleratorStore()
 
     override var prefersStatusBarHidden: Bool {
         get { return true }
@@ -22,6 +23,7 @@ class ViewController: UIViewController, OrcaJSBridgeDelegate {
 
         embedMenu()
     }
+
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -51,5 +53,20 @@ class ViewController: UIViewController, OrcaJSBridgeDelegate {
         menuViewController.didMove(toParent: self)
 
         menuViewController.jsBridge = jsBridge
+        menuViewController.acceleratorStore = accelerators
+    }
+
+    // MARK: - Accelerators
+
+    override var keyCommands: [UIKeyCommand]? {
+        return accelerators.all()
+    }
+
+    @objc func invokeAccelerator(_ sender: UIKeyCommand) {
+        if let cmd = sender.propertyList as? [String: String],
+            let menu = cmd["menu"],
+            let item = cmd["label"] {
+            menuViewController.activateMenuItem(menu: menu, item: item)
+        }
     }
 }

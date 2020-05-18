@@ -4,6 +4,7 @@ class MenuViewController: UIViewController {
 
     var stackView: UIStackView!
     var jsBridge: OrcaJSBridge?
+    var acceleratorStore: AcceleratorStore!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,8 +54,8 @@ class MenuViewController: UIViewController {
         }
 
         for item in info {
-            if let label = item["label"] as? String,
-                !exclude.contains(label),
+            if let menuLabel = item["label"] as? String,
+                !exclude.contains(menuLabel),
                 let submenu = item["submenu"] as? [[String: Any]] {
 
                 // parse submenu titles
@@ -62,11 +63,14 @@ class MenuViewController: UIViewController {
                 for subitem in submenu {
                     if let label = subitem["label"] as? String {
                         subs.append(label)
+                        if let accelerator = subitem["accelerator"] as? String {
+                            acceleratorStore.add(accelerator, menu: menuLabel, label: label)
+                        }
                     }
                 }
-                menu[label] = subs
+                menu[menuLabel] = subs
 
-                let button = createMenuButton(label: label)
+                let button = createMenuButton(label: menuLabel)
                 stackView.addArrangedSubview(button)
             }
         }
@@ -82,7 +86,7 @@ extension MenuViewController {
         openSubmenu(label)
     }
 
-    private func activateMenuItem(menu: String, item: String) {
+    func activateMenuItem(menu: String, item: String) {
         jsBridge?.runMenuCommand(menu: menu, item: item)
     }
 

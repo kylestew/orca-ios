@@ -14,6 +14,17 @@ window.require = function (what) {
     case 'path': return path; break
     case 'node-osc': return osc; break
     case 'electron': return electron; break
-    default: console.log(what); break
+    default: console.log("missing mock - " + what); break
   }
 }
+
+// forward console.log to iOS wrapper for xcode log output
+console.log = function(what) {
+    window.webkit.messageHandlers.debugLog.postMessage("LOG: " + JSON.stringify(arguments));
+};
+console.warn = function(what) {
+    window.webkit.messageHandlers.debugLog.postMessage("WARN: " + JSON.stringify(arguments));
+};
+console.error = function(what) {
+    window.webkit.messageHandlers.debugLog.postMessage("ERROR: " + JSON.stringify(arguments));
+};

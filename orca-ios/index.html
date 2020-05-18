@@ -12,8 +12,9 @@
       window.__dirname = "desktop/sources";
       window.terminal = terminal
       terminal.install(document.body)
-      terminal.start()
+      window.addEventListener('load', () => {
+        terminal.start();
+      })
     </script>
   </body>
 </html>
-

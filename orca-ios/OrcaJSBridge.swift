@@ -24,6 +24,7 @@ class OrcaJSBridge : NSObject, WKScriptMessageHandler {
         // register callbacks
         let controller = webView.configuration.userContentController
         controller.add(self, name: "menuDidUpdate")
+        controller.add(self, name: "debugLog")
 
         injectMIDIPolyfill(controller)
     }
@@ -37,6 +38,13 @@ class OrcaJSBridge : NSObject, WKScriptMessageHandler {
                 parseMenu(jsonString)
             }
             return
+
+        case "debugLog":
+            if let message = message.body as? String {
+                print(message)
+            }
+            return
+
         default: break
         }
 
